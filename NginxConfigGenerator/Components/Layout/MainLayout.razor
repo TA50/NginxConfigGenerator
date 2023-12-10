@@ -1,0 +1,32 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>Nginx Conf</PageTitle>
+<FluentLayout>
+    <FluentHeader>
+        Nginx Conf Generator
+    </FluentHeader>
+
+    <FluentBodyContent>
+        <FluentStack Orientation="Orientation.Horizontal" Style="height: 100vh;">
+            <FluentNavMenu Width="250" Title="Nav Menu">
+                <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Home())">
+                    Home
+                </FluentNavLink>
+                <FluentNavLink Href="/generator" Icon="@(new Icons.Regular.Size20.Add())">
+                    Generator
+                </FluentNavLink>
+            </FluentNavMenu>
+
+        <main class="main-content">
+            @Body
+        </main>
+        </FluentStack>
+    </FluentBodyContent>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+</FluentLayout>

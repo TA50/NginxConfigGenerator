@@ -1,0 +1,25 @@
+﻿
+<FluentTextField @bind-Value=Location.Path Label="Path"  />
+<FluentTextField @bind-Value=Location.Index Label="Index"  />
+<FluentTextField @bind-Value=Location.Root Label="Root"  />
+
+@foreach (var header in Location.Headers)
+{
+    var _h = header;
+
+    <HeaderForm @bind-Header=_h />
+}
+<FluentButton IconStart="new Icons.Regular.Size12.AddCircle()" OnClick="AddHeader"> Add Header</FluentButton>
+<FluentDivider />
+
+@code {
+    [Parameter]
+    public ServerLocation Location { get; set; }
+    [Parameter]
+    public EventCallback<ServerLocation> LocationChanged { get; set; }
+
+    private void AddHeader()
+    {
+        Location.Headers.Add(new Header());
+    }
+}

@@ -1,0 +1,47 @@
+﻿@using NginxConfigGenerator.Client.Models
+@using System.Reactive.Subjects
+
+
+<FluentStack Orientation="Orientation.Vertical">
+    <FluentStack Orientation="Orientation.Horizontal">
+        <FluentTextField @bind-Value=Server.Title Label="Title" />
+        <FluentTextField @bind-Value=Server.Domain Label="Domain" />
+        <FluentNumberField @bind-Value=Server.Port Label="Port" Size="10" />
+    </FluentStack>
+    <FluentTextField @bind-Value=Server.AccessLog Label="Access Log" />
+    <FluentTextField @bind-Value=Server.ErrorLog Label="Error Log" />
+    <FluentDivider />
+    <FluentLabel Typo="Typography.Header">Locations</FluentLabel>
+    @foreach (var location in Server.Locations)
+    {
+        var _l = location;
+        <LocationForm @bind-Location=_l />
+    }
+
+    <FluentButton OnClick=AddLocation IconStart="@(new Icons.Regular.Size12.Add())"
+                  Appearance="Appearance.Outline">
+        Add Location
+    </FluentButton>
+</FluentStack>
+<FluentDivider />
+@code {
+
+    [Parameter]
+    public Server Server { get; set; }
+
+    [Parameter]
+    public EventCallback<Server> ServerChanged { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Console.WriteLine("Server Form Initailized");
+
+    }
+
+    private void AddLocation()
+    {
+        Server.Locations.Add(new ServerLocation());
+    }
+}

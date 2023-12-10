@@ -1,0 +1,19 @@
+﻿@page "/generator"
+@using NginxConfigGenerator.Client.Pages.Generator.Editor
+@using NginxConfigGenerator.Client.Pages.Generator.Viewer
+
+@rendermode InteractiveWebAssembly
+
+<CascadingValue Value="Config">
+    <FluentTabs @bind-ActiveTabId="@activeid" OnTabChange="HandleOnTabChange">
+        <FluentTab Label="Editor" Id="config-tab">
+            <ConfigEditor />
+        </FluentTab>
+        <FluentTab Label="Viewer" Id="viewer-tab">
+            <ConfigViewer />
+        </FluentTab>
+
+    </FluentTabs>
+</CascadingValue>
+
+

@@ -1,0 +1,52 @@
+﻿@using System.Reactive.Subjects
+
+<div>
+    <FluentButton OnClick="OnAddServer"
+                  IconStart="@(new Icons.Regular.Size16.Add())"
+                  Appearance="Appearance.Accent">
+        Add Server
+    </FluentButton>
+
+    <FluentAccordion Style="margin-top: 10px"
+                     ActiveId="@activeId" OnAccordionItemChange="HandleOnAccordionItemChange">
+        @foreach (var server in Config.Servers)
+        {
+            var _s = server;
+            <FluentAccordionItem Heading=@server.Title Id=@(server.Id.ToString())>
+                <ServerForm @bind-Server=_s />
+            </FluentAccordionItem>
+        }
+
+
+    </FluentAccordion>
+</div>
+
+@code {
+
+        [CascadingParameter]
+        public Config Config { get; set; }
+
+        string activeId = "server-0";
+
+        FluentAccordionItem? changed;
+
+        private void HandleOnAccordionItemChange(FluentAccordionItem item)
+        {
+            changed = item;
+        }
+
+        void OnAddServer()
+        {
+            var newServer = new Server
+            {
+                Title = "New Server",
+
+            };
+            Config.Servers.Add(newServer);
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+}

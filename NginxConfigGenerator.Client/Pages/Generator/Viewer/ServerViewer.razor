@@ -1,0 +1,43 @@
+﻿
+
+<div class="block">
+    <div class="block-header"><code>server_name</code> &nbsp; <strong>@Server.Title</strong> <code>{</code> </div>
+    <div class="block-body">
+        <div>
+            <code>server_name</code> &nbsp; @Server.Domain ;
+        </div>
+        <div>
+            <code>listen</code> &nbsp; @Server.Port ;
+        </div>
+
+        @foreach (var location in Server.Locations)
+        {
+            <LocationViewer Location="location" />
+        }
+        @if (Server.AccessLog is not null)
+        {
+            <div>
+                <code>access_log</code> &nbsp; @Server.AccessLog ;
+            </div>
+        }
+        @if (Server.ErrorLog is not null)
+        {
+            <div>
+                <code>error_log</code> &nbsp; @Server.ErrorLog ;
+            </div>
+        }
+
+    </div>
+    <code>}</code>
+
+</div>
+
+
+
+
+@code {
+    [Parameter]
+    public Server Server { get; set; }
+
+
+}

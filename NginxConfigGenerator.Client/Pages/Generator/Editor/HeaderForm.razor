@@ -1,0 +1,22 @@
+﻿<FluentStack Orientation="Orientation.Horizontal">
+    <FluentSelect Value=Header.Name ValueChanged=@( v=> Header.Name=v)
+                  TOption="string" Height="300px">
+        @foreach (var option in Header.HeaderNames)
+        {
+            <FluentOption Value=@option>@option</FluentOption>
+        }
+    </FluentSelect>
+
+    <FluentTextField @bind-Value=Header.Value />
+</FluentStack>
+
+@code {
+
+    [Parameter]
+    public Header Header { get; set; }
+    [Parameter]
+    public EventCallback<Header> HeaderChanged { get; set; }
+
+
+
+}

@@ -1,0 +1,32 @@
+﻿
+<div class="block">
+    <div class="block-header"><code>location</code> &nbsp; <strong>@Location.Path</strong> <code>{</code> </div>
+    <div class="block-body">
+        @foreach (var header in Location.Headers)
+        {
+            <div>
+                <code>@header.Name</code> &nbsp; @header.Value;
+            </div>
+        }
+        @if (Location.Root is not null)
+        {
+            <div>
+                <code>root</code> &nbsp; @Location.Root;
+            </div>
+        }
+        @if (Location.Index is not null)
+        {
+            <div>
+                <code>index</code> &nbsp; @Location.Index ;
+            </div>
+        }
+
+    </div>
+    <code>}</code>
+
+</div>
+
+@code {
+    [Parameter]
+    public ServerLocation Location { get; set; }
+}
